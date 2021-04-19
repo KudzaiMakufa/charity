@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+    <link href="{% static "admin/custom/css/donation.css" %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+    <div class="container theme-background-white main-body">
+      <div class="col-md-12">
+        <div class="row donate-bar">  
+          <div class="col-md-4 theme-blue">
+            GIVE WHERE NEEDED MOST
+            <hr>
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title theme-blue ">GIVE WHERE NEEDED MOST</h5>
+         
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <ul class="nav navbar-nav navbar-left donate-buttons" id="donate-buttons">
+              <li><a href="#">
+                <button class="btn-blue active" data-dollars='25' data-impact="Covers {{donation.purpose}}">
+                  $25
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars='50' data-impact="Covers {{donation.purpose}}">
+                  $50
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars='100' data-impact="Covers {{donation.purpose}}">
+                  $100
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars='500' data-impact="Covers {{donation.purpose}}">
+                  $500
+                </button>
+              </a></li>
+              <li id="other"><a href="#">
+                <button class="btn-blue-other" data-dollars='other' data-impact="Thank you!">
+                  OTHER
+                </button>
+              </a></li>
+              <li id="other-input">
+                <span>$</span>
+               <input data-impact="That’s great. Thank you!">
+              </li>
+              <li><a href="#">
+                <button class="btn-green" data-toggle="modal" data-target="#myModal">
+                  DONATE
+                </button>
+              </a></li>
+              <li style="display: none;"><a href="#">
+                LEARN MORE<i class="fa fa-chevron-right margin-left"></i>
+              </a></li>
+            </ul>
+            <p class="impact">
+              Covers {{donation.purpose}}
+            </p>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header well text-center theme-background-blue">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="text-white">You’re Donating:</h2>
+                    <hr>
+                    <h1 class="text-white" style="font-size: 5.5em; margin-top: 0;">$<span id="price"></span></h1>
+              
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">  
+                      <section class="col-md-12">
+                        <form>
+                          <fieldset class="col-md-6">
+                            <legend>
+                              Your personal info
+                            </legend>
+                            <label>Your Name</label>
+                            <input type="string" class="form-control">
+                            <label>Your email</label>
+                            <input type="email" class="form-control">
+                            <label>Address</label>
+                            <input type="email" class="form-control">
+                            <label>City, State, Zip Code</label>
+                            <input type="email" class="form-control">
+                          </fieldset>
+                           <fieldset class="col-md-6">
+                           <legend>
+                              PayPal
+                            </legend>
+                            <label for="card-number">Email</label>
+                            <input placeholder="enter email" type="text" class="form-control card-number" id="card-number">
+                           </fieldset> 
+
+                          {% comment %} <fieldset class="col-md-6">
+                            <legend>
+                              Credit Card Information
+                            </legend>
+                            <label for="card-number">Credit Card Number</label>
+                            <input placeholder="1234 5678 9012 3456" pattern="[0-9]*" type="text" class="form-control card-number" id="card-number">
+                            <label for="card-number">Expiration Date</label>
+                            <input placeholder="MM/YY" pattern="[0-9]*" type="text" class="form-control card-expiration" id="card-expiration">
+                            <label for="card-number">CVV Number</label>
+                            <input placeholder="CVV" pattern="[0-9]*" type="text" class="form-control card-cvv" id="card-cvv">
+                            <label for="card-number">Billing Zip Code</label>
+                            <input placeholder="ZIP" pattern="[0-9]*" type="text" class="form-control card-zip" id="card-zip">
+                          </fieldset> {% endcomment %}
+                        </form>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">BACK</button>
+                    {{ form.render }}
+                    {% comment %} <button type="button" class="btn-green">CONTINUE</button> {% endcomment %}
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          </div>
+        </div><!--/.donate-bar-->
+      </div><!-- /.col-md-12 -->
+{% endblock %}
+
+
+{% block footer %}
+    <script src="{% static "admin/custom/js/donation.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+{% endblock %}
+
+
+
+
+
+

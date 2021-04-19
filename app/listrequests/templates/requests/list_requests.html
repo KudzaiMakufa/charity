@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+    <style>
+        input[type="text"]:disabled {
+        background: #dddddd;
+}
+    </style>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        
+        {% comment %} <a href="{% url 'dashboard:index' %}" class="btn btn-lg btn-success float-right">Add Libraries</a> {% endcomment %}
+     
+    </div>
+    <br>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+            
+                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        
+                        <th>Organisation </th>
+                        <th>Address </th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Constitution</th>
+                        <th>Deeds</th>
+                        <th>Elligibility</th>
+                        <th>Charity Typa</th>
+                        <th>Actions  </th>
+                        
+                    
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                 
+                    {% for item in libraries %}
+                        <tr>
+
+                            <td>{{item.organisation_name}}</td>
+                            <td>{{item.address}}</td>
+                            <td>{{item.phone}}</td>
+                            <td>{{item.email}}</td>
+                            <td><a href="{{item.constitution_doc.url}}">Constitution</td>
+                            <td><a href="{{item.deeds_document.url}}">Deeds</td>
+                            <td><a href="{{item.elligibility_doc.url}}">Elligibility Doc</td>
+                            <td>{{item.charity_type}}</td>
+                        
+                           
+                        
+                        
+                            <td>
+                                {% comment %} <a href="{% url  'dashboard:lib_scan' item.id  %}" class="btn btn-outline-primary waves-effect waves-light" >View Contents</a>
+                                <a href="{% url  'dashboard:vuln_check' item.id  %}" class="btn btn-outline-primary waves-effect waves-light" >Scan Application</a> {% endcomment %}
+                                {% if item.approved == 0 %}
+                                    <a href="{% url  'listrequests:approve' item.id  %}" class="btn btn-outline-success waves-effect waves-light" >Approve</a>
+                                {% else %}
+                                <p class="text-success">Activated</p>
+                                {% endif %}
+                            </td>
+                        
+                        </tr>
+                    {% endfor %}
+               
+              
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+</div> <!-- end row -->
+
+{% endblock %}
+    
+{% block footer %}
+
+
+  
+<!-- datetime -->
+<script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+<script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+<script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+     <!-- Required datatable js -->
+     <script src="{% static "admin/assets/libs/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+     <script src="{% static "admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js" %}"></script>
+
+     <!-- Datatable init js -->
+     <script src="{% static "admin/assets/js/pages/datatables.init.js" %}"></script>
+{% endblock %}
+
+
