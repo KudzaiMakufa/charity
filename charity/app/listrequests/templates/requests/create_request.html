@@ -1,0 +1,201 @@
+<html lang="en"><head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Login | GA POSTING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="Themesdesign" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static "admin/assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="{% static "admin/assets/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="{% static "admin/assets/css/icons.min.css" %}" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="{% static "admin/assets/css/app.min.css" %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="bg-primary bg-pattern">
+    <div class="home-btn d-none d-sm-block">
+        <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
+    </div>
+
+    <div class="account-pages  pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <a href="" class="logo"><img src="{% static "admin/assets/images/test123.png" %}" height="50" alt="logo"></a>
+                        <h5 class="font-size-16 text-white-50 mb-4">CHARITY</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                {% if message.tags == 'info'%}
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <strong>{{ message.tags }}: </strong>  {{ message }}.
+                                                    </div>
+                
+                                                {% else %}
+
+                                                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    <strong>{{ message.tags }}: </strong> {{ message }}
+                                                </div>
+                                                {% endif %}
+                                                <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message.tags }}</li> -->
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+            <div class="row justify-content-center">
+            
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="p-2">
+                          
+                                
+
+                                    <div class="row">
+                                        
+                                            
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.organisation_name.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.organisation_name }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.organisation_name.errors }}</div>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.address.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.address }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.address.errors }}</div>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.phone.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.phone }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.phone.errors }}</div>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.email.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.email }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.email.errors }}</div>
+                                            </div>
+                                            
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.constitution_doc.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.constitution_doc }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.constitution_doc.errors }}</div>
+                                            </div>
+                                            
+                                        
+                                        </div>
+                                    </div>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="p-2">
+                                
+                
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.deeds_document.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.deeds_document }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.deeds_document.errors }}</div>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.elligibility_doc.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.elligibility_doc }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.elligibility_doc.errors }}</div>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label>{{ form.charity_type.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.charity_type }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.charity_type.errors }}</div>
+                                            </div>
+                                             <div class="form-group mb-4">
+                                                <label>{{ form.password.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.password }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.password.errors }}</div>
+                                            </div>
+
+                                              <div class="form-group mb-4">
+                                                <label>{{ form.confirm_password.label_tag}}</label>
+                                                <div class="input-group">
+                                                    {{ form.confirm_password }} 
+                                                </div>
+                                                <div class="text-danger"> {{ form.confirm_password.errors }}</div>
+                                            </div>
+
+                                            
+                                            
+                                        
+                                        </div>
+                                    </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% comment %} end 2nd row {% endcomment %}
+                <div class="mt-4">
+                                                <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Submit application </button>
+                                            </div>
+
+            </div>
+      
+            <!-- end row -->
+        </div>
+          </form>
+    </div>
+    <!-- end Account pages -->
+
+    <script src="{% static "admin/assets/libs/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/metismenu/metisMenu.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/simplebar/simplebar.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/node-waves/waves.min.js" %}"></script>
+
+    <script src="{% static "admin/assets/js/app.js" %}"></script>   
+
+
+
+</body></html>

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+    <style>
+        input[type="text"]:disabled {
+        background: #dddddd;
+}
+    </style>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        
+        {% comment %} <a href="{% url 'dashboard:index' %}" class="btn btn-lg btn-success float-right">Add Libraries</a> {% endcomment %}
+     
+    </div>
+    <br>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+            
+                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        
+                        <th>Organisation </th>
+                        <th>Purpose </th>
+                        <th>Target </th>
+                       
+                       
+                        <th>Actions  </th>
+                        
+                    
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                 
+                    {% for item in donations %}
+                        <tr>
+
+                            <td>{{item.name}}</td>
+                             <td>{{item.purpose}}</td>
+                             <td>{{item.amount}}</td>
+                        
+                            <td>
+                           
+                            <a data-toggle="modal" data-target="#modal_{{item.name}}" class="btn btn-sm btn-outline-success waves-effect waves-light"><i class="fas fa-eye"></i>|View Details</a>|
+                            <a href="{% url  'donation:make_donation' item.id  %}" class="btn btn-outline-primary waves-effect waves-light" >Donate</a>
+                           
+                            </td>
+                           
+                        
+                        
+                           
+                        
+                        </tr>
+                        {% include './_modal_details.html' %}
+                    {% endfor %}
+               
+              
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+</div> <!-- end row -->
+
+{% endblock %}
+    
+{% block footer %}
+
+
+  
+<!-- datetime -->
+<script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+<script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+<script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+     <!-- Required datatable js -->
+     <script src="{% static "admin/assets/libs/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+     <script src="{% static "admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js" %}"></script>
+
+     <!-- Datatable init js -->
+     <script src="{% static "admin/assets/js/pages/datatables.init.js" %}"></script>
+{% endblock %}
+
+
