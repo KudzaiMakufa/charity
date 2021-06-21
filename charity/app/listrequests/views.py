@@ -129,13 +129,15 @@ def list_requests_donor(request):
 
 @login_required
 def approve_request(request ,lib_id=None):
+    
     req = Charity_Request.objects.get(pk=lib_id)
-
-    req.approved = 1
-    req.save()
 
     # create user 
     try:
+        
+
+        req.approved = 1
+        req.save()
         user = User.objects.create_user(req.email, req.email, req.password)
         user.save()
         user.last_name = req.organisation_name
@@ -145,46 +147,72 @@ def approve_request(request ,lib_id=None):
 
         # add user to doctor group 
     
-        my_group = Group.objects.get(name='charity') 
+        my_group = Group.objects.get(name='donor') 
         my_group.user_set.add(user)
+        messages.add_message(request, messages.INFO, 'Application approved ')
         
         
         
     except:
-        messages.add_message(request, messages.ERROR, ' Username or emails exists')
+        pass
+        # messages.add_message(request, messages.ERROR, ' Email /or phone no already taken')
 
-    messages.add_message(request, messages.INFO, 'Application approved ')
+    
     return HttpResponseRedirect(reverse('listrequests:requests'))
 
 @login_required
 def approve_request_donor(request ,lib_id=None):
-    req = Charity_Request.objects.get(pk=lib_id)
+    req = Charity_Request_Donor.objects.get(pk=lib_id)
 
-    req.approved = 1
-    req.save()
 
     # create user 
     try:
+        req.approved = 1
+        req.save()
         user = User.objects.create_user(req.email, req.email, req.password)
         user.save()
-        user.last_name = req.organisation_name
-        user.first_name = req.organisation_name
+        user.last_name = req.name
+        user.first_name = req.name
         user.save()
 
 
         # add user to doctor group 
-    
+
         my_group = Group.objects.get(name='charity') 
         my_group.user_set.add(user)
+        messages.add_message(request, messages.INFO, 'Application approved ')
         
         
         
     except:
-        messages.add_message(request, messages.ERROR, ' Username or emails exists')
+        pass
+        # messages.add_message(request, messages.ERROR, ' Email / phone no already taken ')
+       
 
-    messages.add_message(request, messages.INFO, 'Application approved ')
+    
     return HttpResponseRedirect(reverse('listrequests:create_request_donor'))
 
+@login_required
+def delete_request(request ,lib_id=None):
+    req = Charity_Request_Donor.objects.get(pk=lib_id)
+
+    req.delete()
+
+    messages.add_message(request, messages.INFO, 'Charity Org Deleted')
+ 
+    return HttpResponseRedirect(reverse('listrequests:requests'))
+
+
+
+@login_required
+def delete_request_donor(request ,lib_id=None):
+    req = Charity_Request_Donor.objects.get(pk=lib_id)
+
+    req.delete()
+
+    messages.add_message(request, messages.INFO, 'Donor Deleted')
+ 
+    return HttpResponseRedirect(reverse('listrequests:requests_donor'))
     # context = {
     #     "item":req[0], 
      

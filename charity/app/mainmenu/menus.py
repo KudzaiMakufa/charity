@@ -12,8 +12,17 @@ MENUS = {
                     "icon_class": 'mdi mdi-google-analytics',
                     "submenu": [
                         {
-                    "name": "Show Listing Requests",
+                    "name": "Charity  Listing Requests",
                     "url": "listrequests:requests",
+                
+                    # "validators": [
+                    #             ('mainmenu.menu_validators.has_group' ,'doctor'),
+                    #         ],
+                            
+                },
+                 {
+                    "name": "Donor Listing Requests",
+                    "url": "listrequests:requests_donor",
                 
                     # "validators": [
                     #             ('mainmenu.menu_validators.has_group' ,'doctor'),

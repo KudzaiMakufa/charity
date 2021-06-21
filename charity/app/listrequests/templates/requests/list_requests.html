@@ -68,6 +68,7 @@
                                 <a href="{% url  'dashboard:vuln_check' item.id  %}" class="btn btn-outline-primary waves-effect waves-light" >Scan Application</a> {% endcomment %}
                                 {% if item.approved == 0 %}
                                     <a href="{% url  'listrequests:approve' item.id  %}" class="btn btn-outline-success waves-effect waves-light" >Approve</a>
+                                    <a href="{% url  'listrequests:delete_request' item.id  %}" class="btn btn-outline-danger waves-effect waves-light" >Delete</a>
                                 {% else %}
                                 <p class="text-success">Activated</p>
                                 {% endif %}
