@@ -99,3 +99,15 @@ def make_donation( request , don_id = None):
         
     } 
     return render(request , url , context)
+@login_required
+def paynow( request , amount = None):
+  
+    url = "donation/payment_process.html" 
+   
+    context = {
+        
+        'title': "Make Donation",
+     
+        
+    } 
+    return render(request , url , context)

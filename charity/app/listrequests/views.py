@@ -72,8 +72,6 @@ def create_request_donor(request):
     url = "requests/create_request_donor.html" 
     if request.method == 'POST':
         form = Charity_Request_Donor_Form(request.POST, request.FILES)
-  
-
         
         if(form.is_valid()):
             form_data = form.cleaned_data
@@ -88,7 +86,7 @@ def create_request_donor(request):
                
                 data.save()
                 messages.add_message(request, messages.INFO, 'Application submited , check later')
-                return HttpResponseRedirect(reverse('listrequests:create_request_donor'))
+                return HttpResponseRedirect(reverse('listrequests:requests_donor'))
      
     else:
         form = Charity_Request_Donor_Form()
@@ -138,7 +136,7 @@ def approve_request(request ,lib_id=None):
 
         req.approved = 1
         req.save()
-        user = User.objects.create_user(req.email, req.email, req.password)
+        user = User.objects.create_user(req.email, req.email, req.password )
         user.save()
         user.last_name = req.organisation_name
         user.first_name = req.organisation_name
@@ -147,15 +145,16 @@ def approve_request(request ,lib_id=None):
 
         # add user to doctor group 
     
-        my_group = Group.objects.get(name='donor') 
+        my_group = Group.objects.get(name='charity') 
         my_group.user_set.add(user)
         messages.add_message(request, messages.INFO, 'Application approved ')
         
         
         
     except:
+        messages.add_message(request, messages.INFO, 'Application approved ')
         pass
-        # messages.add_message(request, messages.ERROR, ' Email /or phone no already taken')
+        # messages.add_message(request, messages.INFO, ' Email /or phone no already taken')
 
     
     return HttpResponseRedirect(reverse('listrequests:requests'))
@@ -178,19 +177,20 @@ def approve_request_donor(request ,lib_id=None):
 
         # add user to doctor group 
 
-        my_group = Group.objects.get(name='charity') 
+        my_group = Group.objects.get(name='donor') 
         my_group.user_set.add(user)
         messages.add_message(request, messages.INFO, 'Application approved ')
         
         
         
     except:
+        messages.add_message(request, messages.INFO, 'Application approved ')
         pass
-        # messages.add_message(request, messages.ERROR, ' Email / phone no already taken ')
+        # messages.add_message(request, messages.INFO, ' Email / phone no already taken ')
        
 
     
-    return HttpResponseRedirect(reverse('listrequests:create_request_donor'))
+    return HttpResponseRedirect(reverse('listrequests:requests_donor'))
 
 @login_required
 def delete_request(request ,lib_id=None):

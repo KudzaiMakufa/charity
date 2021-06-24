@@ -14,7 +14,7 @@ MENUS = {
                         {
                     "name": "Charity  Listing Requests",
                     "url": "listrequests:requests",
-                
+                    "validators": ['menu_generator.validators.is_superuser']
                     # "validators": [
                     #             ('mainmenu.menu_validators.has_group' ,'doctor'),
                     #         ],
@@ -23,6 +23,7 @@ MENUS = {
                  {
                     "name": "Donor Listing Requests",
                     "url": "listrequests:requests_donor",
+                    "validators": ['menu_generator.validators.is_superuser']
                 
                     # "validators": [
                     #             ('mainmenu.menu_validators.has_group' ,'doctor'),
@@ -32,6 +33,10 @@ MENUS = {
                 {
                     "name": "Create Donation",
                     "url": "donation:create_donation",
+                    "validators": [
+                                ('mainmenu.menu_validators.has_group' ,'charity'),
+                            
+                            ],
                     
                     
                     
@@ -40,6 +45,10 @@ MENUS = {
                 {
                     "name": "My Donation Requests",
                     "url": "donation:my_requests",
+                    "validators": [
+                                ('mainmenu.menu_validators.has_group' ,'charity'),
+                            
+                            ],
                     
                     
                     

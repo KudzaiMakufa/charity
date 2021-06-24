@@ -8,6 +8,7 @@ urlpatterns = [
     path('list', views.list_donations ,name="list_donations"),
     path('make_donation/<int:don_id>', views.make_donation ,name="make_donation"),
     path('my_requests', views.my_requests ,name="my_requests"),
+    path('paynow/<int:amount>', views.paynow ,name="paynow"),
 
 
 

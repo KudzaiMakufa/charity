@@ -120,7 +120,7 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">BACK</button>
                     {{ form.render }}
-                  <button type="button" class="btn-green">CONTINUE</button>
+                  <a href="{% url  'donation:paynow' 10  %}" type="button" class="btn-green">CONTINUE</a>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
